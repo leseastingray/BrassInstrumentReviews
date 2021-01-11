@@ -18,10 +18,10 @@ namespace BrassInstrumentReviews.Models
             ErrorMessage = "Instrument type must be between 3 and 100 characters.")]
         public string InstrumentType { get; set; }
         [Required(ErrorMessage = "An instrument rating is required.")]
-        [Range(0, 5, ErrorMessage = "Rating must be an integer between 0 and 5 inclusive).")]
         // 0 = worst, 1 = bad, 2 = okay, 3 = good, 4 = great,  5 = best
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
         public string ReviewText { get; set; }
+        [Required(ErrorMessage = "The review date is required.")]
         public DateTime ReviewDate { get; set; }
     }
 }

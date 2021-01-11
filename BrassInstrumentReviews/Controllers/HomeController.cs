@@ -10,6 +10,7 @@ namespace BrassInstrumentReviews.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "Welcome to Brass Instrument Reviews!";
             return View();
         }
     }
