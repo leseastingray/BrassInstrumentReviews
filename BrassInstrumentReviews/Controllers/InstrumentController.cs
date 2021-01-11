@@ -15,13 +15,39 @@ namespace BrassInstrumentReviews.Controllers
             ViewBag.Title = "Instrument Reviews";
             return View();
         }
+        /* 
+        // Method to get a list of instrument reviews
+        public IActionResult Reviews()
+        {
+            // Get all reviews in the database
+            List<Review> reviews = repo.Reviews.ToList<Review>(); // Use ToList to convert the IQueryable to a list
+            // var reviews = context.Reviews.Include(book => book.Reviewer).ToList<Review>();
+            return View(reviews);
+        }
+
+        // Method to filter reviews by instrument type
+        [HttpPost]
+        public IActionResult Reviews(string instrumentType)
+        {
+            List<Review> reviews = null;
+
+            if (instrumentType!= null)
+            {
+                reviews = (from r in repo.Reviews
+                           where r.InstrumentType == instrumentType
+                           select r).ToList();
+            }
+
+            return View(reviews);
+        }
+        */
+        // Method to get instrument review form
         [HttpGet]
         public IActionResult Review()
         {
             return View();
         }
-        [HttpPost]
-        // Method to add new bird sighting (see page 477 for DB context-related info)
+        // Method to submit form and add new instrument review (see page 477 for DB context-related info)
         [HttpPost]
         public IActionResult AddReview(Review review)
         {
@@ -31,7 +57,5 @@ namespace BrassInstrumentReviews.Controllers
             } */
             return RedirectToAction("List", "Review");
         }
-        // Method to update bird sighting
-        // Method to delete bird sighting
     }
 }

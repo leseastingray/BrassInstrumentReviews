@@ -33,3 +33,16 @@ C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\BrassInstrumentReviews.csproj.CopyComplete
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\Instrument\Review.cshtml.g.cs
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
