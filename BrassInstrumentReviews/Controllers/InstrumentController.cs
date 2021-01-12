@@ -15,19 +15,18 @@ namespace BrassInstrumentReviews.Controllers
             ViewBag.Title = "Instrument Reviews";
             return View();
         }
-        /* 
         // Method to get a list of instrument reviews
         public IActionResult Reviews()
         {
             // Get all reviews in the database
-            List<Review> reviews = repo.Reviews.ToList<Review>(); // Use ToList to convert the IQueryable to a list
+            //List<Review> reviews = repo.Reviews.ToList<Review>(); // Use ToList to convert the IQueryable to a list
             // var reviews = context.Reviews.Include(book => book.Reviewer).ToList<Review>();
-            return View(reviews);
+            return View(/*reviews*/);
         }
-
+        /*
         // Method to filter reviews by instrument type
         [HttpPost]
-        public IActionResult Reviews(string instrumentType)
+        public IActionResult FilterReviews(string instrumentType)
         {
             List<Review> reviews = null;
 

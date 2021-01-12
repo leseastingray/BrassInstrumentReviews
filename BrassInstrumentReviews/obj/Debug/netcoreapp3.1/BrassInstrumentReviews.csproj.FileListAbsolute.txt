@@ -46,3 +46,4 @@ C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\Instrument\Reviews.cshtml.g.cs

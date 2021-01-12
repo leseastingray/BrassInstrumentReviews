@@ -28,12 +28,13 @@
                 <a class="nav-item nav-link" href="/">Home</a>
                 <a class="nav-item nav-link" href="/Instrument">Instruments</a>
                 <a class="nav-item nav-link active" href="/Instrument/Review">Write a Review</a>
+                <a class="nav-item nav-link" href="/Instrument/Reviews">See the Reviews</a>
             </div>
         </nav>
     </nav>
     <h1>Instrument Review Form</h1>
     <form asp-action="Index" method="post">
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div>
             <label asp-for="InstrumentName">Instrument Name (Conn 8D, Reynolds Contempora, etc.):</label>
             <input asp-for="InstrumentName" />

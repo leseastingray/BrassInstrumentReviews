@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>Write a Review</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
@@ -25,17 +25,25 @@
         <nav class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="/">Home</a>
-                <a class="nav-item nav-link active" href="/Instrument">Instruments</a>
+                <a class="nav-item nav-link" href="/Instrument">Instruments</a>
                 <a class="nav-item nav-link" href="/Instrument/Review">Write a Review</a>
-                <a class="nav-item nav-link" href="/Instrument/Reviews">See the Reviews</a>
+                <a class="nav-item nav-link active" href="/Instrument/Reviews">See the Reviews</a>
             </div>
         </nav>
     </nav>
     <div class="text-center">
-        <h1>Brass Instruments</h1>
+        <h1>Here are the Reviews!</h1>
     </div>
     <p>
-        This page will be the jumping-off point for the instrument and review pages.
+        This page will have a table of all the reviews, drawn from a list.
     </p>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr><th>Instrument Name</th><th>Instrument Type</th><th>Rating</th><th>Review Text</th><th>Reviewer Name</th><th>Review Date</th></tr>
+        </thead>
+        <tbody>
+            <!-- foreach i in List, create a table row and fill out the columns -->
+        </tbody>
+    </table>
 </body>
 </html>
