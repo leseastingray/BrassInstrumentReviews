@@ -12,5 +12,40 @@ namespace BrassInstrumentReviews.Models
 
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Reviewer> Reviewers { get; set; }
+        public DbSet<Instrument> Instruments { get; set; }
+        
+        // Method to seed initial instrument review data
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Review>().HasData(
+                new Review
+                {
+                    ReviewID = 1,
+                    InstrumentName = "Reynolds Contempora bass trombone",
+                    InstrumentType = "Trombone",
+                    Rating = 3,
+                    ReviewerName = "stingray",
+                    ReviewDate = new DateTime(2020, 3, 4)
+                },
+                new Review
+                {
+                    ReviewID = 2,
+                    InstrumentName = "Bach Stradivarius Bb trumpet",
+                    InstrumentType = "Trumpet",
+                    Rating = 4,
+                    ReviewerName = "Spot",
+                    ReviewDate = new DateTime(2020, 7, 4)
+                },
+                new Review
+                {
+                    ReviewID = 3,
+                    InstrumentName = "Conn 8D horn",
+                    InstrumentType = "French horn",
+                    Rating = 5,
+                    ReviewerName = "Megan cat",
+                    ReviewDate = new DateTime(2020, 12, 1)
+                }
+             );
+        }
     }
 }
