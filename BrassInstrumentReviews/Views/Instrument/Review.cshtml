@@ -42,6 +42,7 @@
         <div>
             <label asp-for="InstrumentType">Instrument Type:</label>
             <select asp-for="InstrumentType">
+                <option value="Unselected">select an instrument type</option>
                 <option value="Trumpet">Trumpet</option>
                 <option value="French horn">French horn</option>
                 <option value="Trombone">Trombone</option>
@@ -53,6 +54,7 @@
         <div>
             <label>Your Rating:</label>
             <select asp-for="Rating">
+                <option value="99">select a rating</option>
                 <option value="0">Worst</option>
                 <option value="1">Bad</option>
                 <option value="2">Okay</option>

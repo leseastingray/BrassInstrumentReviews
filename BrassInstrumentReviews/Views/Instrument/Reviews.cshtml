@@ -56,23 +56,29 @@
             {
                 @foreach (var review in Model)
                 {
-                <tr>
-                    <td>@review.InstrumentName</td>
-                    <td>@review.InstrumentType</td>
-                    <td>@review.Rating</td>
-                    <td>@review.ReviewText</td>
-                    <td>@review.ReviewerName</td>
-                    <td>@review.ReviewDate</td>
-                    <td>
-                        <a asp-controller="Instrument" asp-action="ReviewDetail"
-                           asp-route-id="@review.ReviewID">Details/Edit</a>
-                        <a asp-controller="Instrument" asp-action="Delete"
-                           asp-route-id="@review.ReviewID">Delete</a>
-                    </td>
-                </tr>
-                 }
-             }
+                    <tr>
+                        <td>@review.InstrumentName</td>
+                        <td>@review.InstrumentType</td>
+                        <td>@review.Rating</td>
+                        <td>@review.ReviewText</td>
+                        <td>@review.ReviewerName</td>
+                        <td>@review.ReviewDate</td>
+                        <td>
+                            <a asp-controller="Instrument" asp-action="EditReview"
+                               asp-route-id="@review.ReviewID">Edit</a>
+                            <a asp-controller="Instrument" asp-action="DeleteReview"
+                               asp-route-id="@review.ReviewID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
+    <a asp-controller="Instrument" asp-action="ReviewsByName"
+       class="btn btn-dark">Order Reviews by Name</a>
+    <a asp-controller="Instrument" asp-action="ReviewsByRating"
+       class="btn btn-dark">Order Reviews by Rating</a>
+    <a asp-controller="Instrument" asp-action="Reviews"
+       class="btn btn-dark">Order Reviews by Type</a>
 </body>
 </html>

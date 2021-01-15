@@ -28,25 +28,27 @@ namespace BrassInstrumentReviews.Controllers
             // Get all reviews in the database and order by instrument type
             //List<Review> reviews = repo.Reviews.ToList<Review>(); // Use ToList to convert the IQueryable to a list
             var reviews = context.Reviews.OrderBy(r => r.InstrumentType).ToList();
-            return View();
+            return View(reviews);
         }
         public IActionResult ReviewsByName()
         {
             // Get all reviews in the database and order by reviewer name
             var reviews = context.Reviews.OrderBy(r => r.ReviewerName).ToList();
-            return View();
+            return View("Reviews", reviews);
         }   
         public IActionResult ReviewsByRating()
         {
             // Get all reviews in the database and order by rating
             var reviews = context.Reviews.OrderBy(r => r.Rating).ToList();
-            return View();
+            return View("Reviews", reviews);
         }
         public IActionResult FindReviewById()
         {
+            // declare and instantiate id
             int id = 1;
+            // find first review matching the review id
             var review = context.Reviews.Where(r => r.ReviewID == id).FirstOrDefault();
-            return View();
+            return View(review);
         }
         /*
          * Method to search reviews for instrument name (probably using wildcard, if possible)
@@ -88,36 +90,31 @@ namespace BrassInstrumentReviews.Controllers
             return View("Reviews");
         }
         [HttpGet]
-        public IActionResult ReviewDetail(int id)
+        public IActionResult EditReview(int id)
         {
             // Gets the Appropriate Review Details Page
-            ViewBag.Action = "Edit";
             var review = context.Reviews.Find(id);
             return View(review);
         }
         [HttpPost]
-        public IActionResult Edit(Review review)
+        public IActionResult EditReview(Review review)
         {
             // Method to edit reviews, adds to the context/repo
             if (ModelState.IsValid)
             {
-                if (review.ReviewID == 0)
-                    context.Reviews.Add(review);
-                else
-                    context.Reviews.Update(review);
+                context.Reviews.Update(review);
                 context.SaveChanges();
                 return RedirectToAction("Reviews", "Instrument");
             }
             else
             {
-                ViewBag.Action = (review.ReviewID == 0) ? "Add" : "Edit";
                 return View(review);
             }
         }
         [HttpGet]
         public IActionResult DeleteReview(int id)
         {
-            // Gets the appropriate Delete page
+            // Gets the appropriate Delete page by id
             var review = context.Reviews.Find(id);
             return View(review);
         }

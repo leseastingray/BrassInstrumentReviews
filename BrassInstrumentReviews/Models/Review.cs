@@ -14,9 +14,8 @@ namespace BrassInstrumentReviews.Models
         [StringLength(200, MinimumLength = 3,
             ErrorMessage = "Instrument name must be between 3 and 200 characters.")]
         public string InstrumentName { get; set; }
-        [Required(ErrorMessage = "The instrument type is required.")]
         public string InstrumentType { get; set; }
-        [Required(ErrorMessage = "An instrument rating is required.")]
+        [Range(0,5,ErrorMessage ="Select an instrument rating.")]
         // 0 = worst, 1 = bad, 2 = okay, 3 = good, 4 = great,  5 = best
         public int? Rating { get; set; }
         public string ReviewText { get; set; }

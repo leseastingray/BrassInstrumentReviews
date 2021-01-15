@@ -77,4 +77,4 @@ C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\Instrument\DeleteReview.cshtml.g.cs
-C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\Instrument\ReviewDetail.cshtml.g.cs
+C:\Users\Student\Documents\ASPNET\BrassInstrumentReviews\BrassInstrumentReviews\obj\Debug\netcoreapp3.1\Razor\Views\Instrument\EditReview.cshtml.g.cs
