@@ -76,7 +76,7 @@ namespace BrassInstrumentReviews.Controllers
         }
         // Method to submit form and add new instrument review (see page 477 for DB context-related info)
         [HttpPost]
-        public IActionResult Review(Review model)
+        public IActionResult Review(Review review)
         {
             // Timestamp
             //model.ReviewDate = DateTime.Now;
@@ -85,9 +85,14 @@ namespace BrassInstrumentReviews.Controllers
             if (ModelState.IsValid)
             {
                 //repo.AddReview(model);
-                context.Add(model);
+                context.Add(review);
+                context.SaveChanges();
+                return View("Index");
             }
-            return View("Reviews");
+            else
+            {
+                return View("Review");
+            }
         }
         [HttpGet]
         public IActionResult EditReview(int id)
@@ -124,7 +129,7 @@ namespace BrassInstrumentReviews.Controllers
             // Method to delete reviews
             context.Reviews.Remove(review);
             context.SaveChanges();
-            return View("Reviews", "Instrument");
+            return RedirectToAction("Reviews", "Instrument");
         }
     }
 }

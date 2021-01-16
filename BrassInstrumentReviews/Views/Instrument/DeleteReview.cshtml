@@ -37,6 +37,7 @@
     <h3>@Model.InstrumentName (@Model.ReviewerName)</h3>
     <form asp-action="DeleteReview" method="post">
         <input type="hidden" asp-for="ReviewID" />
+
         <button type="submit" class="btn btn-warning">Delete</button>
         <a asp-controller="Instrument" asp-action="Reviews"
            class="btn btn-dark">Cancel</a>

@@ -33,7 +33,7 @@
         </nav>
     </nav>
     <h1>Instrument Review Form</h1>
-    <form asp-action="Index" method="post">
+    <form asp-action="Review" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div>
             <label asp-for="InstrumentName">Instrument Name (Conn 8D, Reynolds Contempora, etc.):</label>
@@ -76,7 +76,7 @@
             <input asp-for="ReviewDate" />
         </div>
         <button type="submit">Submit</button>
-        <a asp-action="Index">Clear</a>
+        <a asp-action="Review">Clear</a>
     </form>
 </body>
 </html>
