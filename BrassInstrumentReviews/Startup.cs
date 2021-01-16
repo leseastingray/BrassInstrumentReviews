@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BrassInstrumentReviews.Models;
 
 namespace BrassInstrumentReviews
 {
@@ -24,6 +26,8 @@ namespace BrassInstrumentReviews
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<InstrumentReviewContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("InstrumentReviewContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
