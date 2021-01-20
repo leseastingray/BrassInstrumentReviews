@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace BrassInstrumentReviews.Models
 {
     // Inherits from IdentityDbContext to enable Identity
-    public class InstrumentReviewContext : IdentityDbContext
+    public class InstrumentReviewContext : IdentityDbContext<Reviewer>
     {
         public InstrumentReviewContext(DbContextOptions<InstrumentReviewContext> options) : base(options) { }
 
@@ -21,6 +22,8 @@ namespace BrassInstrumentReviews.Models
         // Method to seed initial instrument review data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Review>().HasData(
                 new Review
                 {
