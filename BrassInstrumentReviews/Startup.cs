@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using BrassInstrumentReviews.Models;
 
 namespace BrassInstrumentReviews
@@ -26,8 +27,12 @@ namespace BrassInstrumentReviews
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            // To connect with the local database
             services.AddDbContext<InstrumentReviewContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("InstrumentReviewContext")));
+            services.AddIdentity<Reviewer, IdentityRole>()
+                .AddEntityFrameworkStores<InstrumentReviewContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +53,11 @@ namespace BrassInstrumentReviews
 
             app.UseRouting();
 
+            // Added to enable Identity
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
