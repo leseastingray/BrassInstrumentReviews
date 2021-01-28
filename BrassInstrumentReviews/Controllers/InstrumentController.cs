@@ -80,6 +80,17 @@ namespace BrassInstrumentReviews.Controllers
         {
             // Timestamp
             //model.ReviewDate = DateTime.Now;
+            /*
+             *     Code to connect Reviewer object with Review object
+             // Get the Reviewer object for the current user
+             model.Reviewer = userManager.GetUserAsync(User).Result;
+             // TODO: modify the register code to get the user's name
+             model.Reviewer.Name = model.Reviewer.UserName;  // Temporary hack
+             model.ReviewDate = DateTime.Now;
+             // Store the model in the database
+             repo.AddReview(model);
+             return View(model);
+             */
 
             // Store the model in the database
             if (ModelState.IsValid)

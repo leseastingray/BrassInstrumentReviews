@@ -1,13 +1,12 @@
-﻿@model Review
+﻿@model LoginViewModel
 @{
-    string title = ViewBag.Action + " Review";
-    ViewBag.Title = title;
+    ViewBag.Title = "Login";
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Write a Review</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
@@ -29,7 +28,7 @@
         </button>
         <nav class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link active" href="/">Home</a>
                 <a class="nav-item nav-link" href="/Instrument">Instruments</a>
                 <a class="nav-item nav-link" href="/Instrument/Review">Write a Review</a>
                 <a class="nav-item nav-link" href="/Instrument/Reviews">See the Reviews</a>
@@ -62,56 +61,46 @@
             </div>
         </nav>
     </nav>
-    <h2>Edit</h2>
-    <form asp-action="EditReview" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
+    <h1>Login</h1>
 
-        <div class="form-group">
-            <label asp-for="InstrumentName">Instrument Name</label>
-            <input asp-for="InstrumentName" class="form-control" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="LogIn" asp-route-returnURL="@Model.ReturnUrl">
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Username:</label></div>
+            <div class="col-sm-4">
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
         </div>
-        <div>
-            <label asp-for="InstrumentType">Instrument Type:</label>
-            <select asp-for="InstrumentType">
-                <option value="Unselected">select an instrument type</option>
-                <option value="Trumpet">Trumpet</option>
-                <option value="French horn">French horn</option>
-                <option value="Trombone">Trombone</option>
-                <option value="Euphonium">Euphonium</option>
-                <option value="Tuba">Tuba</option>
-                <option value="Other">Other</option>
-            </select>
+        <div class="form-group row">
+            <div class="col-sm-2"><label>Password:</label></div>
+            <div class="col-sm-4">
+                <input type="password" asp-for="Password" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div> 
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-4">
+                <input type="checkbox" title="Remember Me" asp-for="RememberMe" 
+                       class="form-check" />
+                <label>Remember Me</label>
+            </div>
         </div>
-        <div>
-            <label>Your Rating:</label>
-            <select asp-for="Rating">
-                <option value="99">select a rating</option>
-                <option value="0">Worst</option>
-                <option value="1">Bad</option>
-                <option value="2">Okay</option>
-                <option value="3">Good</option>
-                <option value="4">Great</option>
-                <option value="5">Best</option>
-            </select>
+        <div class="row">
+            <div class="offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
         </div>
-        <div>
-            <label asp-for="ReviewText">Review Text</label>
-            <textarea asp-for="ReviewText"></textarea>
+        <div class="row">
+            <div class="offset-2 col-sm-4">
+                Not registered?
+                <a asp-action="Register">Register as a new reviewer</a>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="ReviewerName">Reviewer Name</label>
-            <input asp-for="ReviewerName" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label asp-for="ReviewDate">Review Date</label>
-            <input asp-for="ReviewDate" class="form-control" />
-        </div>
-
-        <input type="hidden" asp-for="ReviewID" />
-
-        <button type="submit" class="btn btn-primary">Edit</button>
-        <a asp-controller="Instrument" asp-action="Reviews"
-           class="btn btn-dark">Cancel</a>
     </form>
 </body>
 </html>

@@ -33,6 +33,7 @@ namespace BrassInstrumentReviews
             services.AddIdentity<Reviewer, IdentityRole>()
                 .AddEntityFrameworkStores<InstrumentReviewContext>()
                 .AddDefaultTokenProviders();
+            //services.AddTransient<SignInManager<>>
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
