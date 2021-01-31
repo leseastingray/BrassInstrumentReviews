@@ -38,7 +38,7 @@ namespace BrassInstrumentReviews.Controllers
                 // if result is successfully created, sign in new reviewer and redirect to Home Index
                 if (result.Succeeded)
                 {
-                    await signInManager.SignInAsync(reviewer, isPersistent: false);
+                    await signInManager.SignInAsync(reviewer, isPersistent: true);
                     return RedirectToAction("Index", "Home");
                 }
                 else
