@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrassInstrumentReviews.Migrations
 {
     [DbContext(typeof(InstrumentReviewContext))]
-    [Migration("20210120233831_Identity")]
-    partial class Identity
+    [Migration("20210131204153_Register")]
+    partial class Register
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,7 +125,6 @@ namespace BrassInstrumentReviews.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
