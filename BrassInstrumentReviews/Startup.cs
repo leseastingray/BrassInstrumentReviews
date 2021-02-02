@@ -27,6 +27,10 @@ namespace BrassInstrumentReviews
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            // Dependency injection for repos into controllers
+            //services.AddTransient<IReviewRepository, ReviewRepository>();
+
             // To connect with the local database
             services.AddDbContext<InstrumentReviewContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("InstrumentReviewContext")));
@@ -53,11 +57,9 @@ namespace BrassInstrumentReviews
 
             app.UseRouting();
 
-            // Added to enable Identity
+            // Added to enable Identity, Authentication must come first
             app.UseAuthentication();
-
             app.UseAuthorization();
-
 
             app.UseEndpoints(endpoints =>
             {

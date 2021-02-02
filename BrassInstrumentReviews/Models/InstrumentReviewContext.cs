@@ -16,7 +16,7 @@ namespace BrassInstrumentReviews.Models
         // DbSet for the database
         public DbSet<Review> Reviews { get; set; }
         // This DbSet is now taken care of by the parent class, IdentityUser
-        //public DbSet<Reviewer> Reviewers { get; set; }
+        public DbSet<Reviewer> Reviewers { get; set; }
         public DbSet<Instrument> Instruments { get; set; }
 
         // Method to seed initial instrument review data

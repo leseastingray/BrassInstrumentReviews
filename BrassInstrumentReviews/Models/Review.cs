@@ -19,7 +19,7 @@ namespace BrassInstrumentReviews.Models
         // 0 = worst, 1 = bad, 2 = okay, 3 = good, 4 = great,  5 = best
         public int? Rating { get; set; }
         public string ReviewText { get; set; }
-        [Required(ErrorMessage = "A reviewer name is required.")]
+        [Required(ErrorMessage = "The reviewer name is required.")]
         [StringLength(40, MinimumLength = 3,
             ErrorMessage = "Reviewer name must be between 3 and 40 characters.")]
         public string ReviewerName { get; set; }

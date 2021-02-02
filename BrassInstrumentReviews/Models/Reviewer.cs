@@ -15,7 +15,7 @@ namespace BrassInstrumentReviews.Models
          * public int ReviewerID { get; set; }
          */
         [StringLength(60, MinimumLength = 3, ErrorMessage = "Name must contain 3 to 60 characters.")]
-        [Required]
+        //[Required]
         public string Name { get; set; }
          
         public string PrimaryInstrument { get; set; }

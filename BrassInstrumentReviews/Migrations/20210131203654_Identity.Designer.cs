@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrassInstrumentReviews.Migrations
 {
     [DbContext(typeof(InstrumentReviewContext))]
-    [Migration("20210120233831_Identity")]
+    [Migration("20210131203654_Identity")]
     partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
