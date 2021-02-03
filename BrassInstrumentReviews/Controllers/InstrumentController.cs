@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,7 @@ namespace BrassInstrumentReviews.Controllers
                 return View("Review");
             }
         }
+        [Authorize]
         [HttpGet]
         public IActionResult EditReview(int id)
         {
@@ -126,7 +128,8 @@ namespace BrassInstrumentReviews.Controllers
             {
                 return View(review);
             }
-        }
+        }    
+        [Authorize]
         [HttpGet]
         public IActionResult DeleteReview(int id)
         {

@@ -2,9 +2,65 @@
 @{ 
     ViewData["Title"] = " | Manage Users";
 }
-
 <html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/popper.js/cjs/popper.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
 <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Brass Instrument Reviews</a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="/">Home</a>
+                <a class="nav-item nav-link" href="/Instrument">Instruments</a>
+                <a class="nav-item nav-link" href="/Instrument/Review">Write a Review</a>
+                <a class="nav-item nav-link" href="/Instrument/Reviews">See the Reviews</a>
+                <a class="nav-item nav-link active" href="/Admin">Administration</a>
+                @using Microsoft.AspNetCore.Identity
+                @using BrassInstrumentReviews.Models
+                @inject SignInManager<Reviewer> signInManager
+                @if (signInManager.IsSignedIn(User))
+                {
+                    // signed-in user sees Log Out button and username
+                    <li class="nav-item">
+                        <form method="post" asp-action="LogOut" asp-controller="Account" asp-area="">
+                            <input type="submit" value="Log Out"
+                                   class="btn btn-outline-light" />
+                            <span class="text-light">@User.Identity.Name</span>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    // anonymous user sees Register and Log In links
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-action="Register"
+                           asp-controller="Account" asp-area="">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-action="Login"
+                           asp-controller="Account" asp-area="">Log In</a>
+                    </li>
+                }
+            </div>
+        </nav>
+    </nav>
     <h1 class="mb-2">Manage Users</h1>
     <h5 class="mt-2"><a asp-action="Add">Add a Reviewer</a></h5>
 
@@ -21,35 +77,35 @@
             {
                 @foreach (Reviewer reviewer in Model.Reviewers)
                 {
-                <tr>
-                    <td>@reviewer.UserName</td>
-                    <td>
-                        @foreach (string roleName in reviewer.RoleNames)
-                        {
-                            <div>@roleName</div>
-                        }
-                    </td>
-                    <td>
-                        <form method="post" asp-action="Delete"
-                              asp-route-id="@reviewer.Id">
-                            <button type="submit" class="btn btn-primary">Delete Reviewer</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" asp-action="AddToAdmin"
-                              asp-route-id="@reviewer.Id">
-                            <button type="submit" class="btn btn-primary">Add to Admin</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" asp-action="RemoveFromAdmin"
-                              asp-route-id="@reviewer.Id">
-                            <button type="submit" class="btn btn-primary">Remove from Admin</button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@reviewer.UserName</td>
+                        <td>
+                            @foreach (string roleName in reviewer.RoleNames)
+                            {
+                                <div>@roleName</div>
+                            }
+                        </td>
+                        <td>
+                            <form method="post" asp-action="Delete"
+                                  asp-route-id="@reviewer.Id">
+                                <button type="submit" class="btn btn-primary">Delete Reviewer</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" asp-action="AddToAdmin"
+                                  asp-route-id="@reviewer.Id">
+                                <button type="submit" class="btn btn-primary">Add to Admin</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" asp-action="RemoveFromAdmin"
+                                  asp-route-id="@reviewer.Id">
+                                <button type="submit" class="btn btn-primary">Remove from Admin</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
             }
-        }
         </tbody>
     </table>
     <h1 class="mb-2">Manage Roles</h1>
@@ -72,7 +128,7 @@
                     <tr>
                         <td>@role.Name</td>
                         <td>
-                            <form method="post" asp-action="DeleteRole" 
+                            <form method="post" asp-action="DeleteRole"
                                   asp-route-id="@role.Id">
                                 <button type="submit" class="btn btn-primary">Delete Role</button>
                             </form>

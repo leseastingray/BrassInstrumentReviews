@@ -93,5 +93,10 @@ namespace BrassInstrumentReviews.Controllers
             // redirect to Home Index
             return RedirectToAction("Index", "Home");
         }
+        // Accessed Denied method
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
