@@ -54,7 +54,6 @@ namespace BrassInstrumentReviews
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             // Added to enable Identity, Authentication must come first
@@ -67,6 +66,9 @@ namespace BrassInstrumentReviews
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            // call CreateAdminUser method from InstrumentReviewContext, built on additional code in CreateHostBuilder method in Program.cs
+            InstrumentReviewContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }
