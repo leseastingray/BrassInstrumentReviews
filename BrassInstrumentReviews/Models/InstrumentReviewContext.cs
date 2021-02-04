@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -53,6 +54,37 @@ namespace BrassInstrumentReviews.Models
                     ReviewDate = new DateTime(2020, 12, 1)
                 }
              );
+        }
+        // Method to seed Roles and Reviewer Users, this method is called in Startup.cs
+        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        {
+            // Instantiate UserManager and RoleManager objects using IServiceProvider
+            UserManager<Reviewer> userManager = serviceProvider.GetRequiredService<UserManager<Reviewer>>();
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            // Instantiate string variables
+            string username = "admin";
+            string password = "africanPenguin";
+            string roleName = "Admin";
+
+            // if role does not exist, create it
+            if (await roleManager.FindByNameAsync(roleName) == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+
+            // if username does not exit, create it and add to role
+            if (await userManager.FindByNameAsync(username) == null)
+            {
+                Reviewer reviewer = new Reviewer { UserName = username };
+                var result = await userManager.CreateAsync(reviewer, password);
+
+                // check for success and add the reviewer to the role
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(reviewer, roleName);
+                }
+            }
         }
     }
 }
