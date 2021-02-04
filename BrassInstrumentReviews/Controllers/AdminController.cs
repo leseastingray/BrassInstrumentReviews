@@ -10,7 +10,8 @@ using BrassInstrumentReviews.Models;
 namespace BrassInstrumentReviews.Controllers
 {
     // Authorizes only Admin to access this page (comment out for development)
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
+    // The Area annotation below is unneccessary and breaks, commenting it out fixed the Controller.
     //[Area("Admin")]
     public class AdminController : Controller
     {
