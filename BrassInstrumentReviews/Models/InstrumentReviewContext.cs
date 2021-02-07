@@ -64,7 +64,7 @@ namespace BrassInstrumentReviews.Models
 
             // Instantiate string variables
             string username = "admin";
-            string password = "africanPenguin";
+            string password = "africanPenguin$1";
             string roleName = "Admin";
 
             // if role does not exist, create it
