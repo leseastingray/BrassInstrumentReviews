@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,17 @@ namespace BrassInstrumentReviews.Controllers
 {
     public class InstrumentController : Controller
     {
+        // This will help connect Reviewer to Review (and Comment)
+        private UserManager<Reviewer> userManager;
+        // For repo
+        //IReviewRepository repo;
+
         private InstrumentReviewContext context { get; set; }
-        public InstrumentController (InstrumentReviewContext cxt)
+        public InstrumentController (InstrumentReviewContext cxt, UserManager<Reviewer> usrMngr)
         {
             context = cxt;
+            // repo = r
+            userManager = usrMngr;
         }
         public IActionResult Index()
         {
@@ -34,7 +42,7 @@ namespace BrassInstrumentReviews.Controllers
         public IActionResult ReviewsByName()
         {
             // Get all reviews in the database and order by reviewer name
-            var reviews = context.Reviews.OrderBy(r => r.ReviewerName).ToList();
+            var reviews = context.Reviews.OrderBy(r => r.Reviewer.UserName).ToList();
             return View("Reviews", reviews);
         }   
         public IActionResult ReviewsByRating()
@@ -79,21 +87,18 @@ namespace BrassInstrumentReviews.Controllers
         [HttpPost]
         public IActionResult Review(Review review)
         {
-            // Timestamp
-            //model.ReviewDate = DateTime.Now;
-            /*
-             *     Code to connect Reviewer object with Review object
-             // Get the Reviewer object for the current user
-             model.Reviewer = userManager.GetUserAsync(User).Result;
-             // TODO: modify the register code to get the user's name
-             model.Reviewer.Name = model.Reviewer.UserName;  // Temporary hack
-             model.ReviewDate = DateTime.Now;
-             // Store the model in the database
-             repo.AddReview(model);
-             return View(model);
-             */
+            // Code to connect Reviewer object with Review object
+            // Get the Reviewer object for the current user
+            review.Reviewer = userManager.GetUserAsync(User).Result;
+            review.Reviewer.Name = review.Reviewer.UserName;
 
-            // Store the model in the database
+            // If I were to use timestamp
+            //review.ReviewDate = DateTime.Now;
+
+            // Store the model in the database via repo
+            //repo.AddReview(model);
+
+            // Store the model in the database via context
             if (ModelState.IsValid)
             {
                 //repo.AddReview(model);
@@ -144,6 +149,30 @@ namespace BrassInstrumentReviews.Controllers
             context.Reviews.Remove(review);
             context.SaveChanges();
             return RedirectToAction("Reviews", "Instrument");
+        }
+
+        // For the Comment objects, now in the extended domain model
+        [HttpPost]
+        public RedirectToActionResult Comment(CommentViewModel commentVM)
+        {
+            // Create Comment object using CommentViewModel CommentText, CommenterName (until associated with Reviewer object)
+            var comment = new Comment { CommentText = commentVM.CommentText, CommenterName = commentVM.CommenterName };
+            // For now, this will retrieve the CommenterName string, eventually will retrieve Reviewer object
+            comment.CommentDate = DateTime.Now;
+
+            // Retrieve Review this Comment is associated with (this will change with Repos)
+            // Select Review where ReviewID matches ReviewID in CommentViewModel
+            var review = (from r in context.Reviews
+                          where r.ReviewID == commentVM.ReviewID
+                          select r).First<Review>();
+            // Store Review with Comment in the database
+            review.Comments.Add(comment);
+            // For context
+            context.Update(comment);
+            // For Repos
+            //repo.UpdateReview(review);
+
+            return RedirectToAction("Reviews");
         }
     }
 }
