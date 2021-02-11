@@ -22,18 +22,30 @@ namespace BrassInstrumentReviews.Models
         // New, now with comments! for extended domain model
         public DbSet<Comment> Comments { get; set; }
 
-        // Method to seed initial instrument review data
+        // Create seed Reviewer objects
+        Reviewer stingray = new Reviewer
+        {
+            UserName = "stingray",
+            Name = "Amy",
+            PrimaryInstrument = "Trombone"
+        };
+        Reviewer spot = new Reviewer
+        {
+            UserName = "Spot",
+            Name = "Matt",
+            PrimaryInstrument = "Trumpet"
+        };
+        Reviewer meganCat = new Reviewer
+        {
+            UserName = "Megan cat",
+            Name = "Megan",
+            PrimaryInstrument = "Euphonium"
+        };
+
+        // Method to seed initial instrument review data, using Reviewer objects created above
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Going to attemp to add Reviewer objects in a similar manner to the Review objects
-            modelBuilder.Entity<Reviewer>().HasData(
-                new Reviewer
-                {
-                    
-                }
-                );
 
             modelBuilder.Entity<Review>().HasData(
                 new Review
@@ -42,7 +54,7 @@ namespace BrassInstrumentReviews.Models
                     InstrumentName = "Reynolds Contempora bass trombone",
                     InstrumentType = "Trombone",
                     Rating = 3,
-                    Reviewer = "stingray",
+                    Reviewer = stingray,
                     ReviewDate = new DateTime(2020, 3, 4)
                 },
                 new Review
@@ -51,7 +63,7 @@ namespace BrassInstrumentReviews.Models
                     InstrumentName = "Bach Stradivarius Bb trumpet",
                     InstrumentType = "Trumpet",
                     Rating = 4,
-                    ReviewerName = "Spot",
+                    Reviewer = spot,
                     ReviewDate = new DateTime(2020, 7, 4)
                 },
                 new Review
@@ -60,7 +72,7 @@ namespace BrassInstrumentReviews.Models
                     InstrumentName = "Conn 8D horn",
                     InstrumentType = "French horn",
                     Rating = 5,
-                    ReviewerName = "Megan cat",
+                    Reviewer = meganCat,
                     ReviewDate = new DateTime(2020, 12, 1)
                 }
              );
