@@ -9,6 +9,7 @@ namespace BrassInstrumentReviews.Models
     public class Review
     {
         // ID for EF Core primary key
+        [Key]
         public int ReviewID { get; set; }
 
         // Declare and instantiate List field to hold associated Comment objects

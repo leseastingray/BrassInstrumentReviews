@@ -9,6 +9,7 @@ namespace BrassInstrumentReviews.Models
     public class Comment
     {
         // Id for primary key in the database
+        [Key]
         public int CommentID { get; set; }
 
         [Required(ErrorMessage = "Comment text is required.")]

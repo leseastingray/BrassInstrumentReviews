@@ -13,9 +13,6 @@ namespace BrassInstrumentReviews.Models
         {
             if (!context.Reviews.Any())
             {
-                // TODO: check the results and do something if the operation failed--if it ever does
-                var result = roleManager.CreateAsync(new IdentityRole("Member")).Result;
-                result = roleManager.CreateAsync(new IdentityRole("Admin")).Result;
 
                 // Seeds a default administrator
                 Reviewer siteAdmin = new Reviewer
@@ -34,7 +31,8 @@ namespace BrassInstrumentReviews.Models
                     UserName = "stingray",
                     Name = "Amy Lee"
                 };
-                context.Users.Add(stingray);
+
+                context.Reviewers.Add(stingray);
                 context.SaveChanges();   // This will add a UserID to the Reviewer object
 
                 Review review = new Review
@@ -53,7 +51,7 @@ namespace BrassInstrumentReviews.Models
                     UserName = "Spot",
                     Name = "Matt Mulls"
                 };
-                context.Users.Add(spot);
+                context.Reviewers.Add(spot);
                 context.SaveChanges();   // This will add a UserID to the Reviewer object
 
                 review = new Review
@@ -67,7 +65,7 @@ namespace BrassInstrumentReviews.Models
                 };
                 context.Reviews.Add(review);
 
-                // My next two reviews will be by the same user, so I will create
+                // The next two reviews will be by the same user, so I will create
                 // the user object once and store it so that both reviews will be
                 // associated with the same entity in the DB.
 
@@ -76,7 +74,7 @@ namespace BrassInstrumentReviews.Models
                     UserName = "Megan cat",
                     Name = "Megan Smith"
                 };
-                context.Users.Add(meganCat);
+                context.Reviewers.Add(meganCat);
                 context.SaveChanges();   // This will add a UserID to the reviewer object
 
                 review = new Review
