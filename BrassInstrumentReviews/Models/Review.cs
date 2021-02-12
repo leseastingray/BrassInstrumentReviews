@@ -26,7 +26,7 @@ namespace BrassInstrumentReviews.Models
         public string ReviewText { get; set; }
 
         // Changed to take Reviewer class object, might need to comment out validation annotations
-        [Required(ErrorMessage = "The reviewer name is required.")]
+        //[Required(ErrorMessage = "The reviewer name is required.")]
         //[StringLength(40, MinimumLength = 3, ErrorMessage = "Reviewer name must be between 3 and 40 characters.")]
         //public string ReviewerName { get; set; }
         public Reviewer Reviewer { get; set; }

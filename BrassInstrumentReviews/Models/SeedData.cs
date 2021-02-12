@@ -31,8 +31,7 @@ namespace BrassInstrumentReviews.Models
                     UserName = "stingray",
                     Name = "Amy Lee"
                 };
-
-                context.Reviewers.Add(stingray);
+                context.Users.Add(stingray);
                 context.SaveChanges();   // This will add a UserID to the Reviewer object
 
                 Review review = new Review
@@ -51,7 +50,7 @@ namespace BrassInstrumentReviews.Models
                     UserName = "Spot",
                     Name = "Matt Mulls"
                 };
-                context.Reviewers.Add(spot);
+                context.Users.Add(spot);
                 context.SaveChanges();   // This will add a UserID to the Reviewer object
 
                 review = new Review
@@ -74,7 +73,7 @@ namespace BrassInstrumentReviews.Models
                     UserName = "Megan cat",
                     Name = "Megan Smith"
                 };
-                context.Reviewers.Add(meganCat);
+                context.Users.Add(meganCat);
                 context.SaveChanges();   // This will add a UserID to the reviewer object
 
                 review = new Review
