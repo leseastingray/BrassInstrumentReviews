@@ -111,6 +111,7 @@ namespace BrassInstrumentReviews.Controllers
                 return View("Review");
             }
         }
+        // Method to get edit review form, must be signed in
         [Authorize]
         [HttpGet]
         public IActionResult EditReview(int id)
@@ -133,7 +134,8 @@ namespace BrassInstrumentReviews.Controllers
             {
                 return View(review);
             }
-        }    
+        }
+        // Method to get delete review form, must be signed in
         [Authorize]
         [HttpGet]
         public IActionResult DeleteReview(int id)
@@ -150,7 +152,14 @@ namespace BrassInstrumentReviews.Controllers
             context.SaveChanges();
             return RedirectToAction("Reviews", "Instrument");
         }
-
+        // Method to get Comment form, must be signed in
+        [Authorize]
+        [HttpGet]
+        public IActionResult Comment(int reviewID)
+        {
+            var commentVM = new CommentViewModel { ReviewID = reviewID };
+            return View(commentVM);
+        }
         // For the Comment objects, now in the extended domain model
         [HttpPost]
         public RedirectToActionResult Comment(CommentViewModel commentVM)
