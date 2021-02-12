@@ -23,10 +23,10 @@ namespace BrassInstrumentReviews.Models
         public DbSet<Comment> Comments { get; set; }
 
         // Method to seed initial instrument review data
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            /*
+            
             modelBuilder.Entity<Review>().HasData(
                 new Review
                 {
@@ -55,10 +55,10 @@ namespace BrassInstrumentReviews.Models
                     ReviewerName = "Megan cat",
                     ReviewDate = new DateTime(2020, 12, 1)
                 }
-             );*/
-        }
+             );
+        }*/
         // Method to seed Roles and Reviewer Users, this method is called in Startup.cs
-        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        /*public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
             // Instantiate UserManager and RoleManager objects using IServiceProvider
             UserManager<Reviewer> userManager = serviceProvider.GetRequiredService<UserManager<Reviewer>>();
@@ -88,6 +88,6 @@ namespace BrassInstrumentReviews.Models
                 }
             }
 
-        }
+        }*/
     }
 }

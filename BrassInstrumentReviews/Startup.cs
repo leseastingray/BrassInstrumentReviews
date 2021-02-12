@@ -40,7 +40,7 @@ namespace BrassInstrumentReviews
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InstrumentReviewContext context)
         {
             if (env.IsDevelopment())
             {
@@ -67,8 +67,15 @@ namespace BrassInstrumentReviews
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // call CreateAdminUser method from InstrumentReviewContext, built on additional code in CreateHostBuilder method in Program.cs
-            InstrumentReviewContext.CreateAdminUser(app.ApplicationServices).Wait();
+            // Variables for new seed method
+            var serviceProvider = app.ApplicationServices;
+            var userManager = serviceProvider.GetRequiredService<UserManager<Reviewer>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            // New seed method, calls Seed() from SeedData class
+            SeedData.Seed(context, userManager, roleManager);
+
+            // Old seed method, calls CreateAdminUser method from InstrumentReviewContext, built on additional code in CreateHostBuilder method in Program.cs
+            //InstrumentReviewContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }
