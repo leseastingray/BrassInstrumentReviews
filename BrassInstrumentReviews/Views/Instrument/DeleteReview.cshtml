@@ -61,7 +61,7 @@
     </nav>
     <h1>Delete Review</h1>
     <h2>Confirm Deletion</h2>
-    <h3>@Model.InstrumentName (@Model.ReviewerName)</h3>
+    <h3>@Model.InstrumentName (@Model.Reviewer.UserName)</h3>
     <form asp-action="DeleteReview" method="post">
         <input type="hidden" asp-for="ReviewID" />
 

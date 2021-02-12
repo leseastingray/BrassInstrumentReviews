@@ -26,15 +26,7 @@ namespace BrassInstrumentReviews.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // Going to attemp to add Reviewer objects in a similar manner to the Review objects
-            modelBuilder.Entity<Reviewer>().HasData(
-                new Reviewer
-                {
-                    
-                }
-                );
-
+            /*
             modelBuilder.Entity<Review>().HasData(
                 new Review
                 {
@@ -63,7 +55,7 @@ namespace BrassInstrumentReviews.Models
                     ReviewerName = "Megan cat",
                     ReviewDate = new DateTime(2020, 12, 1)
                 }
-             );
+             );*/
         }
         // Method to seed Roles and Reviewer Users, this method is called in Startup.cs
         public static async Task CreateAdminUser(IServiceProvider serviceProvider)
@@ -95,6 +87,7 @@ namespace BrassInstrumentReviews.Models
                     await userManager.AddToRoleAsync(reviewer, roleName);
                 }
             }
+
         }
     }
 }

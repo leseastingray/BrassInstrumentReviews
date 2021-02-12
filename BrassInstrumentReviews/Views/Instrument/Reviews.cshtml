@@ -83,20 +83,31 @@
             {
                 @foreach (var review in Model)
                 {
-                    <tr>
-                        <td>@review.InstrumentName</td>
-                        <td>@review.InstrumentType</td>
-                        <td>@review.Rating</td>
-                        <td>@review.ReviewText</td>
-                        <td>@review.ReviewerName</td>
-                        <td>@review.ReviewDate</td>
+                <tr>
+                <td>@review.InstrumentName</td>
+                <td>@review.InstrumentType</td>
+                <td>@review.Rating</td>
+                <td>@review.ReviewText</td>
+                <td>@review.Reviewer.UserName</td>
+                <td>@review.ReviewDate</td>
+                @if (review.Comments.Count != 0)
+                {
+                    @foreach (Comment comment in review.Comments)
+                    {
                         <td>
-                            <a asp-controller="Instrument" asp-action="EditReview"
-                               asp-route-id="@review.ReviewID">Edit</a>
-                            <a asp-controller="Instrument" asp-action="DeleteReview"
-                               asp-route-id="@review.ReviewID">Delete</a>
+                            Comment: @comment.CommentText<br />
+                            Commenter: @comment.CommenterName<br />
+                            Comment Date: @comment.CommentDate.Date<br />
                         </td>
-                    </tr>
+                    }
+                }
+                <td>
+                    <a asp-controller="Instrument" asp-action="EditReview"
+                       asp-route-id="@review.ReviewID">Edit</a>
+                    <a asp-controller="Instrument" asp-action="DeleteReview"
+                       asp-route-id="@review.ReviewID">Delete</a>
+                </td>
+                </tr>
                 }
             }
         </tbody>

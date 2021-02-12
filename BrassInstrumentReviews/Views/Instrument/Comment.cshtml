@@ -1,4 +1,7 @@
-﻿@model Review
+﻿@model CommentViewModel
+@{
+    ViewData["Title"] = "Comment";
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +30,8 @@
             <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" href="/">Home</a>
                 <a class="nav-item nav-link" href="/Instrument">Instruments</a>
-                <a class="nav-item nav-link active" href="/Instrument/Review">Write a Review</a>
-                <a class="nav-item nav-link" href="/Instrument/Reviews">See the Reviews</a>
+                <a class="nav-item nav-link" href="/Instrument/Review">Write a Review</a>
+                <a class="nav-item nav-link active" href="/Instrument/Reviews">See the Reviews</a>
                 <a class="nav-item nav-link" href="/Admin">Administration</a>
                 @using Microsoft.AspNetCore.Identity
                 @using BrassInstrumentReviews.Models
@@ -59,51 +62,19 @@
             </div>
         </nav>
     </nav>
-    <h1>Instrument Review Form</h1>
-    <form asp-action="Review" method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
+    <h1>Comment Form</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form method="post" class="container">
         <div>
-            <label asp-for="InstrumentName">Instrument Name (Conn 8D, Reynolds Contempora, etc.):</label>
-            <input asp-for="InstrumentName" />
+            <label asp-for="CommentText">Comment Text:</label>
+            <textarea asp-for="CommentText"></textarea>
         </div>
         <div>
-            <label asp-for="InstrumentType">Instrument Type:</label>
-            <select asp-for="InstrumentType">
-                <option value="Unselected">select an instrument type</option>
-                <option value="Trumpet">Trumpet</option>
-                <option value="French horn">French horn</option>
-                <option value="Trombone">Trombone</option>
-                <option value="Euphonium">Euphonium</option>
-                <option value="Tuba">Tuba</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-        <div>
-            <label>Your Rating:</label>
-            <select asp-for="Rating">
-                <option value="99">select a rating</option>
-                <option value="0">Worst</option>
-                <option value="1">Bad</option>
-                <option value="2">Okay</option>
-                <option value="3">Good</option>
-                <option value="4">Great</option>
-                <option value="5">Best</option>
-            </select>
-        </div>
-        <div>
-            <label asp-for="ReviewText">Review Text</label>
-            <textarea asp-for="ReviewText"></textarea>
-        </div>
-        @*<div>
-            <label asp-for="Reviewer.UserName">Reviewer Name:</label>
-            <input asp-for="Reviewer.UserName" />
-        </div>*@
-        <div>
-            <label asp-for="ReviewDate">Review Date:</label>
-            <input asp-for="ReviewDate" />
+            <label asp-for="CommenterName">Commenter Name:</label>
+            <input asp-for="CommenterName" />
         </div>
         <button type="submit">Submit</button>
-        <a asp-action="Review">Clear</a>
+        <a asp-action="Comment">Clear</a>
     </form>
 </body>
 </html>
