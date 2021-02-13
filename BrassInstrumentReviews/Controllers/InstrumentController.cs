@@ -164,9 +164,11 @@ namespace BrassInstrumentReviews.Controllers
         [HttpPost]
         public RedirectToActionResult Comment(CommentViewModel commentVM)
         {
-            // Create Comment object using CommentViewModel CommentText, CommenterName (until associated with Reviewer object)
-            var comment = new Comment { CommentText = commentVM.CommentText, CommenterName = commentVM.CommenterName };
-            // For now, this will retrieve the CommenterName string, eventually will retrieve Reviewer object
+            // Create Comment object using CommentViewModel CommentText]
+            var comment = new Comment { CommentText = commentVM.CommentText };
+            // Retrieve Reviewer object owner
+            comment.Commenter = userManager.GetUserAsync(User).Result;
+            // Timestamp
             comment.CommentDate = DateTime.Now;
 
             // Retrieve Review this Comment is associated with (this will change with Repos)
@@ -177,7 +179,7 @@ namespace BrassInstrumentReviews.Controllers
             // Store Review with Comment in the database
             review.Comments.Add(comment);
             // For context
-            context.Update(comment);
+            context.Update(review);
             // For Repos
             //repo.UpdateReview(review);
 

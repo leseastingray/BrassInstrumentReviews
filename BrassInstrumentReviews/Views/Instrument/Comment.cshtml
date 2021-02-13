@@ -67,14 +67,13 @@
     <form method="post" class="container">
         <div>
             <label asp-for="CommentText">Comment Text:</label>
-            <textarea asp-for="CommentText"></textarea>
+            <textarea asp-for="CommentText" placeholder="Write your comment here."></textarea>
         </div>
-        <div>
-            <label asp-for="CommenterName">Commenter Name:</label>
-            <input asp-for="CommenterName" />
-        </div>
-        <button type="submit">Submit</button>
-        <a asp-action="Comment">Clear</a>
+        @*<div>
+            <label asp-for="Commenter">Commenter Name:</label>
+            <input asp-for="Commenter" />
+        </div>*@
+        <button type="submit" class="btn btn-secondary">Submit</button>
     </form>
 </body>
 </html>

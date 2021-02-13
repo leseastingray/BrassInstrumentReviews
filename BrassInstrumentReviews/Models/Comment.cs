@@ -17,11 +17,11 @@ namespace BrassInstrumentReviews.Models
         // For Comment timestamp
         public DateTime CommentDate { get; set; }
         // Temporary CommenterName, until time to hook up Reviewer object
-        public string CommenterName { get; set; }
+        //public string CommenterName { get; set; }
         // Refers to Reviewer class object; each Comment can only be associated with one Reviewer
-        //public Reviewer Commenter { get; set; }
+        public Reviewer Commenter { get; set; }
 
         // Refers to Review class object; each Comment can only be associated with one Review
-        public Review CommentReview { get; set; }
+        //public Review CommentReview { get; set; }
     }
 }

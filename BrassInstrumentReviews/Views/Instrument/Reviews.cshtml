@@ -84,7 +84,7 @@
             {
                 @foreach (var review in Model)
                 {
-                <tr>
+            <tr>
                 <td>@review.InstrumentName</td>
                 <td>@review.InstrumentType</td>
                 <td>@review.Rating</td>
@@ -97,10 +97,17 @@
                     {
                         <td>
                             Comment: @comment.CommentText<br />
-                            Commenter: @comment.CommenterName<br />
+                            Commenter: @comment.Commenter.Name<br />
                             Comment Date: @comment.CommentDate.Date<br />
                         </td>
                     }
+                }
+                else
+                {
+                <td>
+                    No comments yet!
+                    <a asp-action="Comment" asp-route-reviewId="@review.ReviewID" class="btn btn-secondary">Add Comment</a>
+                </td>
                 }
                 <td>
                     <a asp-controller="Instrument" asp-action="EditReview"
@@ -108,7 +115,7 @@
                     <a asp-controller="Instrument" asp-action="DeleteReview"
                        asp-route-id="@review.ReviewID">Delete</a>
                 </td>
-                </tr>
+            </tr>
                 }
             }
         </tbody>
