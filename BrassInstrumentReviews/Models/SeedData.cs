@@ -13,6 +13,9 @@ namespace BrassInstrumentReviews.Models
         {
             if (!context.Reviews.Any())
             {
+                // TODO: check the results and do something if the operation failed--if it ever does
+                var result = roleManager.CreateAsync(new IdentityRole("Member")).Result;
+                result = roleManager.CreateAsync(new IdentityRole("Admin")).Result;
 
                 // Seeds a default administrator
                 Reviewer siteAdmin = new Reviewer

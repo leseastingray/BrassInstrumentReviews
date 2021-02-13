@@ -36,19 +36,19 @@ namespace BrassInstrumentReviews.Controllers
         {
             // Get all reviews in the database and order by instrument type
             //List<Review> reviews = repo.Reviews.ToList<Review>(); // Use ToList to convert the IQueryable to a list
-            var reviews = context.Reviews.OrderBy(r => r.InstrumentType).ToList();
+            var reviews = context.Reviews.Include(review => review.Reviewer).OrderBy(r => r.InstrumentType).ToList();
             return View(reviews);
         }
         public IActionResult ReviewsByName()
         {
             // Get all reviews in the database and order by reviewer name
-            var reviews = context.Reviews.OrderBy(r => r.Reviewer.UserName).ToList();
+            var reviews = context.Reviews.Include(review => review.Reviewer).OrderBy(r => r.Reviewer.UserName).ToList();
             return View("Reviews", reviews);
         }   
         public IActionResult ReviewsByRating()
         {
             // Get all reviews in the database and order by rating
-            var reviews = context.Reviews.OrderBy(r => r.Rating).ToList();
+            var reviews = context.Reviews.Include(review => review.Reviewer).OrderBy(r => r.Rating).ToList();
             return View("Reviews", reviews);
         }
         public IActionResult FindReviewById()
