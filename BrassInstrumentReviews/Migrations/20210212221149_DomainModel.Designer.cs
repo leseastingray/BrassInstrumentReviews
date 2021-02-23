@@ -4,14 +4,16 @@ using BrassInstrumentReviews.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BrassInstrumentReviews.Migrations
 {
     [DbContext(typeof(InstrumentReviewContext))]
-    partial class InstrumentReviewContextModelSnapshot : ModelSnapshot
+    [Migration("20210212221149_DomainModel")]
+    partial class DomainModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,21 +31,19 @@ namespace BrassInstrumentReviews.Migrations
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("CommentReviewReviewID")
+                        .HasColumnType("int");
+
                     b.Property<string>("CommentText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CommenterId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ReviewID")
-                        .HasColumnType("int");
+                    b.Property<string>("CommenterName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommentID");
 
-                    b.HasIndex("CommenterId");
-
-                    b.HasIndex("ReviewID");
+                    b.HasIndex("CommentReviewReviewID");
 
                     b.ToTable("Comments");
                 });
@@ -302,15 +302,11 @@ namespace BrassInstrumentReviews.Migrations
 
             modelBuilder.Entity("BrassInstrumentReviews.Models.Comment", b =>
                 {
-                    b.HasOne("BrassInstrumentReviews.Models.Reviewer", "Commenter")
-                        .WithMany()
-                        .HasForeignKey("CommenterId");
-
-                    b.HasOne("BrassInstrumentReviews.Models.Review", null)
+                    b.HasOne("BrassInstrumentReviews.Models.Review", "CommentReview")
                         .WithMany("Comments")
-                        .HasForeignKey("ReviewID");
+                        .HasForeignKey("CommentReviewReviewID");
 
-                    b.Navigation("Commenter");
+                    b.Navigation("CommentReview");
                 });
 
             modelBuilder.Entity("BrassInstrumentReviews.Models.Review", b =>

@@ -13,18 +13,19 @@ namespace BrassInstrumentReviews.Models
     public class InstrumentReviewContext : IdentityDbContext<Reviewer>
     {
         public InstrumentReviewContext(DbContextOptions<InstrumentReviewContext> options) : base(options) { }
-
         // DbSet for the database
         public DbSet<Review> Reviews { get; set; }
-        // This DbSet is now taken care of by the parent class, IdentityUser
-        public DbSet<Reviewer> Reviewers { get; set; }
+        // This DbSet is now taken care of by the parent class, IdentityUser?
+        //public List<Reviewer> Reviewers { get; set; }
         public DbSet<Instrument> Instruments { get; set; }
+        // New, now with comments! for extended domain model
+        public DbSet<Comment> Comments { get; set; }
 
         // Method to seed initial instrument review data
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             modelBuilder.Entity<Review>().HasData(
                 new Review
                 {
@@ -32,7 +33,7 @@ namespace BrassInstrumentReviews.Models
                     InstrumentName = "Reynolds Contempora bass trombone",
                     InstrumentType = "Trombone",
                     Rating = 3,
-                    ReviewerName = "stingray",
+                    Reviewer = "stingray",
                     ReviewDate = new DateTime(2020, 3, 4)
                 },
                 new Review
@@ -54,9 +55,9 @@ namespace BrassInstrumentReviews.Models
                     ReviewDate = new DateTime(2020, 12, 1)
                 }
              );
-        }
+        }*/
         // Method to seed Roles and Reviewer Users, this method is called in Startup.cs
-        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        /*public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
             // Instantiate UserManager and RoleManager objects using IServiceProvider
             UserManager<Reviewer> userManager = serviceProvider.GetRequiredService<UserManager<Reviewer>>();
@@ -85,6 +86,7 @@ namespace BrassInstrumentReviews.Models
                     await userManager.AddToRoleAsync(reviewer, roleName);
                 }
             }
-        }
+
+        }*/
     }
 }

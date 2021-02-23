@@ -1,0 +1,20 @@
+ZAP Security Scan Results, 2/14/2021
+
+Manual, Passive Scan Alerts:
+Medium: Cross-Domain Misconfiguration
+Medium: X-Frame-Options Header Not Set
+Low: Cookie Without Secure Flag
+Low: Incomplete or No Cache-control and Pragma HTTP Set
+Low: X-Content-Type-Options Header Missing
+Informational: Information Disclosure - Suspicious Comments
+Informational: Timestamp Disclosure - Unix
+
+
+Automated, Passive Scan Alerts:
+Medium: X-Frame-Options Header Not Set
+Medium: Application Error Disclosure
+Low: Cookie Without Secure Flag
+Low: Incomplete or No Cache-control and Pragma HTTP Set
+Low: X-Content-Type-Options Header Missing
+Informational: Information Disclosure - Suspicious Comments
+Informational: Timestamp Disclosure - Unix
