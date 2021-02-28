@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using BrassInstrumentReviews.Models;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.CookiePolicy;
 
 namespace BrassInstrumentReviews
 {
@@ -83,6 +84,16 @@ namespace BrassInstrumentReviews
                 }
 
                 return next(context);
+            });
+            // An addition to address the X-Frame-Options Header not set issue
+            app.Use(async (ctx, next) => {
+                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                await next();
+            });
+            // An addition to address cookie without secure flag issue
+            app.UseCookiePolicy(new CookiePolicyOptions { 
+                HttpOnly = HttpOnlyPolicy.Always, Secure = CookieSecurePolicy.Always 
             });
 
             // Added to enable Identity, Authentication must come first
