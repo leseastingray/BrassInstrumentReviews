@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using BrassInstrumentReviews.Models;
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Http;
 
 namespace BrassInstrumentReviews
 {
@@ -28,6 +30,14 @@ namespace BrassInstrumentReviews
         {
             services.AddControllersWithViews();
 
+            // This addition should help prevent cross-site request forgery
+            services.AddAntiforgery(options =>
+            {
+                // Set Cookie properties using CookieBuilder properties†.
+                options.FormFieldName = "AntiforgeryFieldname";
+                options.HeaderName = "X-CSRF-TOKEN-HEADERNAME";
+                options.SuppressXFrameOptionsHeader = false;
+            });
             // Dependency injection for repos into controllers
             //services.AddTransient<IReviewRepository, ReviewRepository>();
 
@@ -40,7 +50,7 @@ namespace BrassInstrumentReviews
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InstrumentReviewContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IAntiforgery antiForgery, InstrumentReviewContext context)
         {
             if (env.IsDevelopment())
             {
@@ -55,6 +65,25 @@ namespace BrassInstrumentReviews
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
+            // An additional protection against cross-site request forgery
+            app.Use(next => context =>
+            {
+                string path = context.Request.Path.Value;
+
+                if (
+                    string.Equals(path, "/", StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(path, "/index.html", StringComparison.OrdinalIgnoreCase))
+                {
+                    // The request token can be sent as a JavaScript-readable cookie, 
+                    // and Angular uses it by default.
+                    var tokens = antiForgery.GetAndStoreTokens(context);
+                    context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken,
+                        new CookieOptions() { HttpOnly = false });
+                }
+
+                return next(context);
+            });
 
             // Added to enable Identity, Authentication must come first
             app.UseAuthentication();

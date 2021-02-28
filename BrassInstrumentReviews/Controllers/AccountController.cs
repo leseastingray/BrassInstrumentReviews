@@ -26,6 +26,7 @@ namespace BrassInstrumentReviews.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel rVModel)
         {
             // check model for validation
@@ -60,6 +61,7 @@ namespace BrassInstrumentReviews.Controllers
             return View(lVModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(LoginViewModel lVModel)
         {
             // check model for validation
