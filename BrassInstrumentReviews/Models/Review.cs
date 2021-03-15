@@ -13,6 +13,7 @@ namespace BrassInstrumentReviews.Models
         public int ReviewID { get; set; }
 
         // Declare and instantiate List field to hold associated Comment objects
+        // When this is static, then the comments actually appear, but the same on every row...wat?
         private List<Comment> comments = new List<Comment>();
 
         [Required(ErrorMessage = "The instrument name is required.")]
