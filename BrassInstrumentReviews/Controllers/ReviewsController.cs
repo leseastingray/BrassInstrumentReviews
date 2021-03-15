@@ -52,5 +52,35 @@ namespace BrassInstrumentReviews.Controllers
                 return Ok(review);
             }
         }
+        // POST Review
+        [HttpPost]
+        public IActionResult AddReview([FromBody]ReviewViewModel reviewVM)
+        {
+            if (reviewVM != null)
+            {
+                Reviewer reviewPerson = new Reviewer
+                {
+                    UserName = reviewVM.ReviewerUserName,
+                    Name = reviewVM.ReviewerName
+                };
+                Review review = new Review
+                {
+                    InstrumentName = reviewVM.InstrumentName,
+                    InstrumentType = reviewVM.InstrumentType,
+                    Rating = reviewVM.Rating,
+                    ReviewText = reviewVM.ReviewText,
+                    ReviewDate = DateTime.Parse(reviewVM.ReviewDate)
+                };
+                context.Users.Add(reviewPerson);
+                context.SaveChanges();   // This will add a UserID to the reviewer object              
+                context.Reviews.Add(review);
+                context.SaveChanges();
+                return Ok(review);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
