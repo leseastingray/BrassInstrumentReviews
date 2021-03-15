@@ -87,7 +87,7 @@ namespace BrassInstrumentReviews
             });
             // An addition to address the X-Frame-Options Header not set issue
             app.Use(async (ctx, next) => {
-                ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                //ctx.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
                 ctx.Response.Headers.Add("X-Content-Type-Options", "nosniff");
                 await next();
             });
