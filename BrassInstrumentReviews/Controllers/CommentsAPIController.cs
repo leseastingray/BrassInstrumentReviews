@@ -13,11 +13,11 @@ namespace BrassInstrumentReviews.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentsController : ControllerBase
+    public class CommentsAPIController : ControllerBase
     {
         private InstrumentReviewContext context;
 
-        public CommentsController(InstrumentReviewContext context)
+        public CommentsAPIController(InstrumentReviewContext context)
         {
             this.context = context;
         }
