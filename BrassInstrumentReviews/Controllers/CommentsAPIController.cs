@@ -52,5 +52,77 @@ namespace BrassInstrumentReviews.Controllers
                 return Ok(review);
             }
         }
+        // POST Review
+        [HttpPost]
+        public IActionResult AddComment([FromBody] CommentViewModel commentVM)
+        {
+            if (commentVM != null)
+            {
+                Comment comment = new Comment
+                {
+                    CommentText = commentVM.CommentText,
+                    CommentDate = DateTime.Today
+                };
+                context.Comments.Add(comment);
+                context.SaveChanges();
+                return Ok(comment);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        // Replace/Put
+        [HttpPut("{id}")]
+        public IActionResult Replace(int id, [FromBody] CommentViewModel commentVM)
+        {
+            if (commentVM != null)
+            {
+                Comment comment = context.Comments.Find(id);
+                comment.CommentText = commentVM.CommentText;
+                comment.CommentDate = DateTime.Today;
+                context.Update(comment);
+                return Ok(comment);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+        // Update/PATCH
+        [HttpPatch("{id}")]
+        public IActionResult UpdateComment(int id, [FromBody] PatchViewModel patchVM)
+        {
+            Comment comment = context.Comments.Find(id);
+            switch (patchVM.Path)
+            {
+                case "text":
+                    comment.CommentText = patchVM.Value;
+                    break;
+                case "date":
+                   comment.CommentDate = Convert.ToDateTime(patchVM.Value);
+                    break;
+                default:
+                    return BadRequest();
+            }
+            context.Update(comment);
+            return Ok(comment);
+        }
+        // Delete
+        [HttpDelete("{id}")]
+        public IActionResult DeleteReview(int id)
+        {
+            Comment comment = context.Comments.Find(id);
+            if (comment != null)
+            {
+                context.Comments.Remove(comment);
+                context.SaveChanges();
+                return NoContent();  // Successfully completed, no data to send back
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
