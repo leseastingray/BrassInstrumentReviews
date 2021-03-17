@@ -89,17 +89,17 @@
                 <td>@review.InstrumentType</td>
                 <td>@review.Rating</td>
                 <td>@review.ReviewText</td>
-                <td>@review.Reviewer.Name</td>
+                <td>@review.Reviewer</td>
                 <td>@review.ReviewDate.Date</td>
                 @if (review.Comments.Count != 0)
                 {
                     @foreach (Comment comment in review.Comments)
                     {
-                        <td>
-                            Comment: @comment.CommentText<br />
-                            Commenter: @comment.Commenter.Name<br />
-                            Comment Date: @comment.CommentDate.Date<br />
-                        </td>
+            <td>
+                Commenter: @comment.Commenter.Name<br />
+                Comment Date: @comment.CommentDate.Date<br />
+                <a asp-action="Comment" asp-route-reviewId="@review.ReviewID" class="btn btn-secondary">Add Comment</a>
+            </td>
                     }
                 }
                 else
